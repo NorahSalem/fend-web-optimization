@@ -26,8 +26,16 @@ Now that you have ImageMagick installed on your machine, go to `src/views/images
 To run optimizations go to this project root level and run `grunt dist` on your terminal.  
 
 #### PageSpeed Insights
-To run PageSpeed Insights, on your terminal, go to the `dist` folder and run `ws -c` to open a local server o port 8000 with cache and GZip enabled. Keep this terminal open.   
+To run PageSpeed Insights, on your terminal, go to the `dist` folder and run `ws -c` to open a local server on port 8000 with cache and GZip enabled. Keep this terminal open.   
 Open another terminal on the `dist` folder and run `grunt`. Soon results for desktop and mobile will show up on your terminal.
+
+#### How To Run The Tests
+
+Here's the order you should run the tasks and get the server up so the `psi` tests will work correctly:  
+
+1. `grunt dist` at root level  
+2. `ws -c` at `dist` folder  
+3. `grunt` at root level
 
 ### What did I do?
 
@@ -45,11 +53,11 @@ frontend-nanodegree-mobile-portfolio-master
 
 #### Cache and GZip
 
-To know how things would look with GZip and cache enabled on the server, I chose  `local-web-server` so the server will run with cache and GZip enabled.
+To know how things would look with GZip and cache enabled on the server, I chose `local-web-server` so the server will run with them enabled.
 
 #### Render-Blocking External Fonts
 `Preload` was used to stop external fonts from render-blocking the page. [Preload](https://www.w3.org/TR/2015/WD-preload-20150721/) is a new keyword that can be used with `<link>` elements enabling asynchronous loading.  
-`Preload` is a new feature so some browsers don't support it yet, so [loadCSS](https://github.com/filamentgroup/loadCSS) has been used to work around this issue.
+`Preload` is a new feature so some browsers don't support it yet, so [loadCSS](https://github.com/filamentgroup/loadCSS) and its [polyfill script](https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js) have been used to work around this issue.
 
 #### Render-Blocking CSS
 The media type `media="print"` was used for the `print.css` file as it is only used when you want to print the page.
@@ -57,6 +65,12 @@ As for the above the fold CSS we've got the whole `style.css` file, therefore th
 
 #### In Element CSS
 There are no longer `style` attributes containing CSS.
+
+#### Inline CSS
+It is a good practice to inline small CSS code. Therefore I've inlined `style.css` which is used for the whole above the fold content.
+
+#### Inline JavaScript
+It is a good practice to inline JavaScript that will not change and that will be needed right away on the client. Therefore I've minified and inlined [loadcss](https://github.com/filamentgroup/loadCSS/blob/master/src/loadCSS.js), [csspreload](https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js) and the Google analytics code, which already was inlined. 
 
 #### Grunt
 Grunt has been used to automate some tasks:
@@ -67,6 +81,15 @@ Grunt has been used to automate some tasks:
 - **minifyHtml:** minifies HTML
 - **image:** optimizes images
 - **psi-ngrok:** automates PageSpeed Insights tests for both desktop and mobile
+
+### Results
+
+Here are some print screens showing the results for the tests on my computer:  
+
+![psi-ngrok with strategy: desktop](https://sc-cdn.scaleengine.net/i/6d15ca45b2282f3075808d3588198226.png)  
+
+![psi-ngrok with strategy: mobile](https://sc-cdn.scaleengine.net/i/80fea49390099574c011c273d6c2e65c.png)
+
 
 ### Website Optimization Specifications
 
