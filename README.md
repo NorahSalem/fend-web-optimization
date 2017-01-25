@@ -28,15 +28,16 @@ To run optimizations go to this project root level and run `grunt dist` on your 
 #### PageSpeed Insights
 To run PageSpeed Insights, on your terminal, go to the `dist` folder and run `ws -c` to open a local server on port 8000 with cache and GZip enabled. Keep this terminal open.   
 
-![terminal open with ws -c running at /dist](https://sc-cdn.scaleengine.net/i/ea40dae638c52261d9a8c4ca91599e86.png)
+![terminal open with ws -c running at /dist](https://sc-cdn.scaleengine.net/i/ea40dae638c52261d9a8c4ca91599e86.png)  
+
 Open another terminal on the `dist` folder and run `grunt`. Soon results for desktop and mobile will show up on your terminal.
 
 #### How To Run The Tests
 To sum it up, here's the order you should run the tasks and get the server up so the `psi` tests will work correctly:  
 
-1. `grunt dist` at root level  
+1. `grunt dist` at project root level  
 2. `ws -c` at `dist` folder  
-3. `grunt` at root level
+3. `grunt` at project root level
 
 ### What did I do?
 
@@ -77,7 +78,7 @@ It is a good practice to inline small CSS code. Therefore I've inlined `style.cs
 It is a good practice to inline JavaScript that will not change and that will be needed right away on the client. Therefore I've minified and inlined [loadcss](https://github.com/filamentgroup/loadCSS/blob/master/src/loadCSS.js), [csspreload](https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js) and the Google analytics code, which already was inlined. 
 
 #### Grunt
-Grunt has been used to automate some tasks:
+Grunt tasks:
 - **clean:** deletes the `dist` folder
 - **copy:** copies files from `src` to `dist`
 - **uglify:** minifies JavaScript
@@ -92,8 +93,8 @@ Here are some print screens showing the results for the tests on my computer:
 ![psi-ngrok with strategy: desktop](https://sc-cdn.scaleengine.net/i/6d15ca45b2282f3075808d3588198226.png)  
 **Desktop results:** as the image above shows, desktop got a PageSpeed score of 96.
 
-![psi-ngrok with strategy: mobile](https://sc-cdn.scaleengine.net/i/80fea49390099574c011c273d6c2e65c.png)
-**Mobile results:** as the image above shows, mobile got a PageSpeed score of 97 with a usability socre of 100.
+![psi-ngrok with strategy: mobile](https://sc-cdn.scaleengine.net/i/80fea49390099574c011c273d6c2e65c.png)  
+**Mobile results:** as the image above shows, mobile got a PageSpeed score of 97 with a usability score of 100.
 
 ### Website Optimization Specifications
 
