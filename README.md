@@ -65,6 +65,9 @@ To know how things would look with GZip and cache enabled on the server, I chose
 The media type `media="print"` was used for the `print.css` file as it is only used when you want to print the page.
 As for the above the fold CSS we've got the whole `style.css` file, therefore there was no way to grab a piece of the CSS that render blocks the above the fold content and then put the rest of the CSS in a separate file and loading it asynchronously.
 
+#### Render-Blocking JavaScript
+The `async` attribute and inline strategies were used to stop JavaScript from render-blocking.
+
 #### In Element CSS
 There are no longer `style` attributes containing CSS.
 
