@@ -8,11 +8,11 @@ This project consists of website optimization for speed.
 
 #### Tools
 
-You'll need:
-1. [local-web-server](https://www.npmjs.com/package/local-web-server): `npm i local-web-server -g`
-2. [ngrok](https://ngrok.com/): `npm i ngrok -g`
-3. [Grunt](http://gruntjs.com/): `npm i grunt-cli -g`
-4. [ImageMagick](https://www.imagemagick.org/script/index.php): `npm i imagemagick`
+You'll need:  
+1. [local-web-server](https://www.npmjs.com/package/local-web-server): `npm i local-web-server -g`  
+2. [ngrok](https://ngrok.com/): `npm i ngrok -g`  
+3. [Grunt](http://gruntjs.com/): `npm i grunt-cli -g`  
+4. [ImageMagick](https://www.imagemagick.org/script/index.php): `npm i imagemagick`  
 
 ### Dependencies
 To install developer dependencies go to this project root level and type `npm install` on your terminal/prompt and npm will download and install them all.
