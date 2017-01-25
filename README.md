@@ -87,9 +87,10 @@ Grunt has been used to automate some tasks:
 Here are some print screens showing the results for the tests on my computer:  
 
 ![psi-ngrok with strategy: desktop](https://sc-cdn.scaleengine.net/i/6d15ca45b2282f3075808d3588198226.png)  
+**Desktop results:** as the image above shows, desktop got a PageSpeed score of 96.
 
 ![psi-ngrok with strategy: mobile](https://sc-cdn.scaleengine.net/i/80fea49390099574c011c273d6c2e65c.png)
-
+**Mobile results:** as the image above shows, mobile got a PageSpeed score of 97 with a usability socre of 100.
 
 ### Website Optimization Specifications
 
