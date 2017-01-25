@@ -2,7 +2,7 @@
 
 \#6 project from [Udacity's Web Developer Front-End nanodegree program](udacity.com/course/front-end-web-developer-nanodegree--nd001/).  
 
-This project consists of website optimization for speed.
+Optimized website that reaches PageSpeed score of at least 90 and runs at 60fps.
 
 ### Getting started
 
@@ -23,15 +23,16 @@ Now that you have ImageMagick installed on your machine, go to `src/views/images
 ### Grunt Tasks
 
 #### Optimizations
-To run optimizations go to this project root level and run `grunt dist` on your terminal.  
+To run optimizations go to this project root level and run `grunt dist` on your terminal. 
 
 #### PageSpeed Insights
 To run PageSpeed Insights, on your terminal, go to the `dist` folder and run `ws -c` to open a local server on port 8000 with cache and GZip enabled. Keep this terminal open.   
+
+![terminal open with ws -c running at /dist](https://sc-cdn.scaleengine.net/i/ea40dae638c52261d9a8c4ca91599e86.png)
 Open another terminal on the `dist` folder and run `grunt`. Soon results for desktop and mobile will show up on your terminal.
 
 #### How To Run The Tests
-
-Here's the order you should run the tasks and get the server up so the `psi` tests will work correctly:  
+To sum it up, here's the order you should run the tasks and get the server up so the `psi` tests will work correctly:  
 
 1. `grunt dist` at root level  
 2. `ws -c` at `dist` folder  
@@ -66,6 +67,9 @@ As for the above the fold CSS we've got the whole `style.css` file, therefore th
 #### In Element CSS
 There are no longer `style` attributes containing CSS.
 
+#### Mobile Font Size
+As Google recommends using a font size of 16px for mobile, the font size has been changed from 14px to 16px on smaller screens.
+
 #### Inline CSS
 It is a good practice to inline small CSS code. Therefore I've inlined `style.css` which is used for the whole above the fold content.
 
@@ -83,7 +87,6 @@ Grunt has been used to automate some tasks:
 - **psi-ngrok:** automates PageSpeed Insights tests for both desktop and mobile
 
 ### Results
-
 Here are some print screens showing the results for the tests on my computer:  
 
 ![psi-ngrok with strategy: desktop](https://sc-cdn.scaleengine.net/i/6d15ca45b2282f3075808d3588198226.png)  
