@@ -108,7 +108,7 @@ Here are some print screens showing the results for the tests on my computer:
 #### Getting Rid of Jank
 
 - [ ] Optimizations made to `views/js/main.js` make `views/pizza.html` render with a consistent frame-rate at 60fps when scrolling.
-- [ ] Time to resize pizzas is less than 5 ms using the pizza size slider on the `views/pizza.html` page. Resize time is shown in the browser developer tools.
+- [x] Time to resize pizzas is less than 5 ms using the pizza size slider on the `views/pizza.html` page. Resize time is shown in the browser developer tools.
 
 #### Documentation
 
