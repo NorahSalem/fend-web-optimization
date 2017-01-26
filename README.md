@@ -26,11 +26,11 @@ Now that you have ImageMagick installed on your machine, go to `src/views/images
 To run optimizations go to this project root level and run `grunt dist` on your terminal. 
 
 #### PageSpeed Insights
-To run PageSpeed Insights, on your terminal, go to the `dist` folder and run `ws -c` to open a local server on port 8000 with cache and GZip enabled. Keep this terminal open.   
+To run PageSpeed Insights, on your terminal, go to the `dist` folder and run `ws -c` to open a local server on port 8000 with cache and GZip enabled. **Keep this terminal open.**   
 
 ![terminal open with ws -c running at /dist](https://sc-cdn.scaleengine.net/i/ea40dae638c52261d9a8c4ca91599e86.png)  
 
-Open another terminal on the `dist` folder and run `grunt`. Soon results for desktop and mobile will show up on your terminal.
+Open another terminal on the root level and run `grunt`. Soon results for desktop and mobile will show up on your terminal.
 
 #### How To Run The Tests
 To sum it up, here's the order you should run the tasks and get the server up so the `psi` tests will work correctly:  
@@ -42,14 +42,15 @@ To sum it up, here's the order you should run the tasks and get the server up so
 ### What did I do?
 
 #### Folders
-To make things more organized I've put the original code into a folder named `src` and the files processed by Grunt will be on a folder called `dist`. Therefore, the folder structure will look like this:
+To make things more organized I've put the original code into a folder named `src` and the files processed by Grunt on a folder called `dist`. Therefore, the folder structure will look like this:
 
 ```
-frontend-nanodegree-mobile-portfolio-master
+.
 ├── dist
 ├── Gruntfile.js
 ├── node_modules
 ├── package.json
+├── README.md
 └── src
 ```
 
@@ -63,16 +64,15 @@ To know how things would look with GZip and cache enabled on the server, I chose
 
 #### Render-Blocking CSS
 The media type `media="print"` was used for the `print.css` file as it is only used when you want to print the page.
-As for the above the fold CSS we've got the whole `style.css` file, therefore there was no way to grab a piece of the CSS that render blocks the above the fold content and then put the rest of the CSS in a separate file and loading it asynchronously.
 
 #### Render-Blocking JavaScript
 The `async` attribute and inline strategies were used to stop JavaScript from render-blocking.
 
-#### In Element CSS
-There are no longer `style` attributes containing CSS.
-
 #### Mobile Font Size
 As Google recommends using a font size of 16px for mobile, the font size has been changed from 14px to 16px on smaller screens.
+
+#### Inline CSS
+The content of `css/style.css` is now minified and inlined at `index.html` as this CSS code is small and used on all above the fold content.  
 
 #### Inline JavaScript
 It is a good practice to inline JavaScript that will not change and that will be needed right away on the client. Therefore I've minified and inlined [loadcss](https://github.com/filamentgroup/loadCSS/blob/master/src/loadCSS.js), [csspreload](https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js) and the Google analytics code, which already was inlined. 
@@ -81,7 +81,7 @@ It is a good practice to inline JavaScript that will not change and that will be
 Optimizations and fixes done in `pizza.html`:  
 
 1. **will-change:** `will-change: transform` and `transform: translateZ(0)` have been applied to the `.mover` class in order to create a new layer for every moving pizza on the background.  
-2. **determineDx:** this function has been removed as it used to return an object called dx which did nothing in the code.  
+2. **determineDx:** this function has been removed as it used to return an object called `dx` which did nothing in the code.  
 3. **pizzas variable:** `document.querySelectorAll(".randomPizzaContainer")` was being called all of the time, so this value is now stored inside a variable called `pizzas`.  
 4. **Switch pizza size:** `offsetWidth` is no longer used to change pizza sizes as it was forcing reflow.  
 5. **read-write-read-write cycle:** the vartiable `phase` and `items[i].basicLeft` were causing read-write-read-write cycle inside a loop that also set up a new `style.left` value to `.mover` elements. Now those values are read inside their own loop and the new left values are stored in a variable eliminating read-write-read-write cycle.
