@@ -74,13 +74,23 @@ There are no longer `style` attributes containing CSS.
 #### Mobile Font Size
 As Google recommends using a font size of 16px for mobile, the font size has been changed from 14px to 16px on smaller screens.
 
-#### Inline CSS
-It is a good practice to inline small CSS code. Therefore I've inlined `style.css` which is used for the whole above the fold content.
-
 #### Inline JavaScript
 It is a good practice to inline JavaScript that will not change and that will be needed right away on the client. Therefore I've minified and inlined [loadcss](https://github.com/filamentgroup/loadCSS/blob/master/src/loadCSS.js), [csspreload](https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js) and the Google analytics code, which already was inlined. 
 
-#### Grunt
+#### Pizza.html
+Optimizations and fixes done in `pizza.html`:  
+
+1. **will-change:** `will-change: transform` and `transform: translateZ(0)` have been applied to the `.mover` class in order to create a new layer for every moving pizza on the background.  
+2. **determineDx:** this function has been removed as it used to return an object called dx which did nothing in the code.  
+3. **pizzas variable:** `document.querySelectorAll(".randomPizzaContainer")` was being called all of the time, so this value is now stored inside a variable called `pizzas`.  
+4. **Switch pizza size:** `offsetWidth` is no longer used to change pizza sizes as it was forcing reflow.  
+5. **read-write-read-write cycle:** the vartiable `phase` and `items[i].basicLeft` were causing read-write-read-write cycle inside a loop that also set up a new `style.left` value to `.mover` elements. Now those values are read inside their own loop and the new left values are stored in a variable eliminating read-write-read-write cycle.
+
+#### Comments
+All optimization comments in `views/js/main.js` follow this pattern:  
+`// Optimization: description here`
+
+#### Grunt Tasks
 Grunt tasks:
 - **clean:** deletes the `dist` folder
 - **copy:** copies files from `src` to `dist`
@@ -94,10 +104,17 @@ Grunt tasks:
 Here are some print screens showing the results for the tests on my computer:  
 
 ![psi-ngrok with strategy: desktop](https://sc-cdn.scaleengine.net/i/6d15ca45b2282f3075808d3588198226.png)  
-**Desktop results:** as the image above shows, desktop got a PageSpeed score of 96.
+**Desktop results:** as the image above shows, desktop got a PageSpeed score of 96.  
 
 ![psi-ngrok with strategy: mobile](https://sc-cdn.scaleengine.net/i/80fea49390099574c011c273d6c2e65c.png)  
-**Mobile results:** as the image above shows, mobile got a PageSpeed score of 97 with a usability score of 100.
+**Mobile results:** as the image above shows, mobile got a PageSpeed score of 97 with a usability score of 100.  
+
+![60 fps pizza.html](https://sc-cdn.scaleengine.net/i/46b7a2cf8fdd43617ef988454a5cefed2.png)  
+`pizza.html` is now running at 60fps.  
+
+![time to resize pizzas](https://sc-cdn.scaleengine.net/i/ca76ade653661386a83128d3768bb4081.png)  
+`pizza.html`'s slider resizes pizzas in less than 5ms.  
+
 
 ### Website Optimization Specifications
 
@@ -107,13 +124,13 @@ Here are some print screens showing the results for the tests on my computer:
 
 #### Getting Rid of Jank
 
-- [ ] Optimizations made to `views/js/main.js` make `views/pizza.html` render with a consistent frame-rate at 60fps when scrolling.
+- [x] Optimizations made to `views/js/main.js` make `views/pizza.html` render with a consistent frame-rate at 60fps when scrolling.   
 - [x] Time to resize pizzas is less than 5 ms using the pizza size slider on the `views/pizza.html` page. Resize time is shown in the browser developer tools.
 
 #### Documentation
 
-- [ ] A `README` file is included detailing all steps required to successfully run the application and outlines the optimizations that the student made in `index.html` and `views/js/main.js` for `pizza.html`.
-- [ ] Comments in `views/js/main.js` for `pizza.html` are present and effectively explain longer code procedures.
+- [x] A `README` file is included detailing all steps required to successfully run the application and outlines the optimizations that the student made in `index.html` and `views/js/main.js` for `pizza.html`.
+- [x] Comments in `views/js/main.js` for `pizza.html` are present and effectively explain longer code procedures.  
 
 #### Extras
 

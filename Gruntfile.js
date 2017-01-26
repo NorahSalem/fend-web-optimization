@@ -62,9 +62,7 @@ module.exports = function(grunt) {
       main: {
         files: {
           'dist/js/analytics.js': ['dist/js/analytics.js'],
-          'dist/js/perfmatters.js': ['dist/js/perfmatters.js'],
-          'dist/js/loadcss.js': ['dist/js/loadcss.js'],
-          'dist/js/cssrelpreload.js': ['dist/js/cssrelpreload.js']
+          'dist/js/perfmatters.js': ['dist/js/perfmatters.js']
         }
       },
       secondary: {

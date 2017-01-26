@@ -421,38 +421,14 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // TODO: comment changes and explain them
-  // TODO: work on getting fps up to 60
-
-   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  // function determineDx (elem, size) {
-  //   var oldWidth = elem.offsetWidth;
-  //   var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-  //   var oldSize = oldWidth / windowWidth;
-
-  //   // Changes the slider value to a percent width
-  //   function sizeSwitcher (size) {
-  //     switch(size) {
-  //       case "1":
-  //         return 0.25;
-  //       case "2":
-  //         return 0.3333;
-  //       case "3":
-  //         return 0.5;
-  //       default:
-  //         console.log("bug in sizeSwitcher");
-  //     }
-  //   }
-
-  //   var newSize = sizeSwitcher(size);
-  //   var dx = (newSize - oldSize) * windowWidth;
-
-  //   return dx;
-  // }
+  // Optimization: determineDx has been removed. This function used to get an element and a size, change pizza sizes and return a dx object which did nothing on the code.
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
+    // Optimization: there is no need to keep calling these elements all of the time, it's best to store them in a variable and just reference it
     var pizzas = document.querySelectorAll(".randomPizzaContainer");
+    var newWidth = 0;
+    // Optimization: simpler way to change pizza sizes than the one that was on determineDx, as this one doesn't need HTMLElement.offsetWidth (which forces reflow) it simply changes the element's width to a new one using HTMLElement.style.width
     switch(size) {
       case '1':
         newWidth = 25;
@@ -466,6 +442,7 @@ var resizePizzas = function(size) {
       default:
         console.log('bug in changePizzaSizes');
     }
+    // Optimization: all references to determineDx have been removed and replaced by a way to change all pizza's width to a new one based on the user's interaction with the slider button
     for (var i = 0; i < pizzas.length; i++) {
       pizzas[i].style.width = newWidth + '%';
     }
@@ -515,11 +492,17 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
   var items = document.querySelectorAll('.mover');
+  // Optimization: phase and items[i].basicLeft inside the for loop were causing a read-write-read-write cycle, so I took them out of the loop they were in and stored their values in a variable with the new HTMLElement.style.left value already calculated
+  var newLefts = [];
+  // Calculating new left style
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    newLefts[i] = items[i].basicLeft + 100 * phase;
+  }
+  // Setting new left style
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.left = newLefts[i] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.

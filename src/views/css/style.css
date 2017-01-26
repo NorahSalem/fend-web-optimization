@@ -33,6 +33,9 @@ form {
   position: fixed;
   width: 256px;
   z-index: -1;
+  /* Optimization: the code bellow will create layers for the pizzas that keep moving on the background */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .randomPizzaContainer {
