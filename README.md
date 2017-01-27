@@ -18,7 +18,7 @@ You'll need:
 To install developer dependencies go to this project root level and type `npm install` on your terminal/prompt and npm will download and install them all.
 
 ### Images
-Now that you have ImageMagick installed on your machine, go to `src/views/images` and run `convert pizzeria.jpg -resize 360 pizzeria.jpg` so we can resize this image to the actual size it's been used on the website and save a few bytes.
+Now that you have ImageMagick installed on your machine, go to `src/views/images` and run `convert pizzeria.jpg -resize 100 pizzeria.jpg` so we can resize this image to the actual size it's been used on the website and save a few bytes.
 
 ### Grunt Tasks
 
